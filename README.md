@@ -1,6 +1,7 @@
 # SocialPath
-![](https://www.offensiveosint.io/content/images/2020/07/OffensiveOsint-logo-RGB-2.png)
+<img src="https://www.offensiveosint.io/content/images/2020/07/OffensiveOsint-logo-RGB-2.png" width="300">
 ![](https://imgur.com/daYzPlO.jpg)
+
 Track users across social media platforms
 
 [Deanonymizing darknet users by username reuse](https://www.offensiveosint.io/socialpath-track-users-across-social-media-platforms/)
