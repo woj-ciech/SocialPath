@@ -6,3 +6,4 @@ praw
 tweepy
 bs4
 redis
+jsonfield
