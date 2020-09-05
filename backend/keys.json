@@ -1,0 +1,20 @@
+{
+  "keys": {
+    "instagram": {
+      "instagram_cookie": ""
+    },
+    "reddit": {
+      "CLIENT_ID": "",
+      "CLIENT_SECRET": "",
+      "PASSWORD": "",
+      "USER_AGENT": "SocialPath",
+      "USERNAME": ""
+    },
+    "twitter":{
+      "TWITTER_ACCESS_TOKEN":"",
+      "TWITTER_ACCESS_TOKEN_SECRET":"",
+      "TWITTER_CONSUMER_KEY":"",
+      "TWITTER_CONSUMER_SECRET":""
+    }
+  }
+}

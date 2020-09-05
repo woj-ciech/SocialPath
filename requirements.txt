@@ -1,0 +1,8 @@
+django
+celery
+celery_progress
+requests
+praw
+tweepy
+bs4
+redis

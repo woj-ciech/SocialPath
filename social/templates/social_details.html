@@ -1,0 +1,354 @@
+{% load static %}
+
+{% block page_content %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <title>{{details.name }} - SocialPath</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+    <!-- 
+    Visual Admin Template
+    https://templatemo.com/tm-455-visual-admin
+    -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet">
+    
+
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+  </head>
+  <body>  
+    <!-- Left column -->
+    <div class="templatemo-flex-row">
+      <div class="templatemo-sidebar">
+        <header class="templatemo-site-header">
+          <h1>SocialPath</h1>
+        </header>
+                <div class="profile-photo-container">
+          <img src="https://www.offensiveosint.io/content/images/2020/07/OffensiveOsint-logo-RGB-2.png" class="img-responsive">
+<!--          <div class="profile-photo-overlay"></div>-->
+        </div>
+        <!-- Search box -->
+
+        </form>
+        <div class="mobile-menu-icon">
+            <i class="fa fa-bars"></i>
+        </div>
+        <nav class="templatemo-left-nav">          
+          <ul>
+                       <li><a href="/social"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="/search"><i class="fa fa-users fa-fw"></i>Search</a></li>
+          </ul>  
+        </nav>
+      </div>
+      <!-- Main content --> 
+      <div class="templatemo-content col-1 light-gray-bg">
+        <div class="templatemo-top-nav-container">
+          <div class="row">
+            <nav class="templatemo-top-nav col-lg-12 col-md-12">
+              <ul class="text-uppercase">
+                <li><a href="/social" class="active">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="https://github.com/woj-ciech/socialpath">Github page</a></li>
+                <li><a href="https://twitter.com/the_wojciech">Follow me</a></li>
+                <li><a href="https://offensiveosint.io">Offensive OSINT Blog</a></li>
+
+              </ul>  
+            </nav> 
+          </div>
+        </div>
+
+        <div class="templatemo-content-container">
+          {% if details.insta.exists %}
+                        <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'insta' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+
+                    <a href="{% url 'instagram' details.username %}">
+
+                      <img class="media-object img-circle" src="{{ details.insta.profile_pic }}">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"></h2><a href="https://instagram.com/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/instagram.svg' %}">
+                      </a>
+                    <h2>{{ details.username }}</h2>
+                    {% if details.insta.exists %}
+                      <h2>{{ details.insta.bio }}</h2>
+                      {% if not details.insta.bio_url == None %}
+                        <h2>{{ details.insta.bio_url }}</h2>
+                      {% endif %}
+                      {% if details.insta.followers %}
+					    <h2>Followers: {{ details.insta.followers }}</h2>
+						<h2>Following: {{ details.insta.follow }}</h2>
+                    {% endif %}
+
+                    {% endif %}
+
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+
+                               {% if details.twitt.exists %}
+
+           <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'twitt' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+                    <a href="{% url 'twitter' details.username %}">
+                      <img class="media-object img-circle" src="{{ details.twitt.profile_pic }}">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://twitter.com/{{ details.username }}"><img src="{% static 'images/twitter.png' %}" class="social_icon"></a></h2></h2>
+                    <h2>{{ details.twitt.name }}</h2>
+                    {% if details.twitt.exists %}
+                                        <h2>{{ details.twitt.bio }}</h2>
+					    <h2>Followers: {{ details.twitt.followers }}</h2>
+						<h2>Friends: {{ details.twitt.friends }}</h2>
+                    {% else %}
+                    <h2>Similar accounts</h2>
+                        {% for user,link in details.twitt.similar.items %}
+
+                            <a href="{{ link }}">{{ user }}</a>
+                            {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+                    {% if details.redd.exists %}
+
+          <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'redd' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+
+                  <div class="media-left">
+                    <a href="{% url 'reddit' details.username %}">
+
+                      <img class="media-object img-circle" src="{{ details.redd.profile_pic }}">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://reddit.com/u/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/reddit.svg' %}"></h2>
+                  </a>
+                    <h2>{{ details.username }}</h2>
+                    {% if details.redd.exists %}
+                      <h2>Karma: {{ details.redd.karma}}</h2>
+                      <h2>Joined: {{ details.redd.joined }}</h2>
+                    {% else %}
+                      <h2>User does not exist</h2>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+                    {% if details.face.exists %}
+
+                    <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'face' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+
+                      <img class="media-object img-circle" src="{{ details.face.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://facebook.com/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/facebook.svg' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                  </div>
+                </div>
+              </div>
+{% endif %}
+                              {% if details.pinterest.exists %}
+
+          <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'pinterest' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+                      <img class="media-object img-circle" src="{{ details.pinterest.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://pinterest.com/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/pinterest.svg' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                    <h2>{{ details.pinterest.about }}</h2>
+                    <h2>{{ details.pinterest.url }}</h2>
+                    <h2>Followers: {{ details.pinterest.followers }}</h2>
+                    <h2>Following: {{ details.pinterest.following }}</h2>
+                    <h2>{{ details.pinterest.locale }}</h2>
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+                    {% if details.tumblr.exists %}
+
+          <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'tumblr' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+
+                      <img class="media-object img-circle" src="{{ details.tumblr.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://{{ details.username }}.tumblr.com/"><img border="0" class="social_icon" src="{% static 'images/tumblr.png' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                    <h2>{{ details.tumblr.title }}</h2>
+
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+
+                    {% if details.steam.exists %}
+
+             <div class="templatemo-content-widget white-bg">
+                 <a href="{% url 'delete_platform' details.username 'steam' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+                      <img class="media-object img-circle" src="{{ details.steam.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://steamcommunity.com/id/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/steam.png' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+                    {% if details.stackover.exists %}
+          <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'stackover' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+
+                    <a href="{% url 'stackoverflow' details.username %}">
+                      <img class="media-object img-circle" src="{{ details.stackover.profile_pic }}">
+
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase">{% if details.stackover.url %}<a href="{{ details.stackover.url }}">{% endif %} <img border="0" class="social_icon" src="{% static 'images/stackoverflow.svg' %}">
+                  </a></h2>
+                    <h2> {{ details.username }}</h2>
+                    {% if details.stackover.exists %}
+                      <h2>Created at: {{ details.stackoverf.created_at }}</h2>
+                      <h2>Reputation: {{ details.stackover.reputation }}</h2>
+                      <h2>Last accessed: {{details.stackover.last_access }}</h2>
+
+                    {% if details.stackover.location %}
+                        <h2>{{ details.stackover.location }}</h2>
+                      {% endif %}
+
+                      {% if not details.stackover.user_url == "" %}
+                        <h2>{{ details.stackover.user_url }}</h2>
+                      {% endif %}
+
+                    {% else %}
+
+                      {% endif %}
+
+
+                  </div>
+                </div>
+              </div>
+                                                               {% endif %}
+
+
+                    {% if details.github.exists %}
+
+                    <div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'github' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+
+                      <img class="media-object img-circle" src="{{ details.github.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://github.com/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/github.png' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                    <h2>{{ details.email }}</h2>
+                    <h2>{{ details.twitter_username }}</h2>
+
+                    <h2>{{ details.github.bio }}</h2>
+                    <h2>{{ details.github.blog }}</h2>
+                    <h2>Repos: {{ details.github.repos }}</h2>
+
+                    <h2>Followers: {{ details.github.followers }}</h2>
+                    <h2>Following: {{ details.github.following }}</h2>
+                    <h2>{{ details.github.location }}</h2>
+                    <h2>{{ details.github.created_at }}</h2>
+
+                  </div>
+                </div>
+              </div>
+                      {% endif %}
+                    {% if details.paste.exists %}
+
+<div class="templatemo-content-widget white-bg">
+                <a href="{% url 'delete_platform' details.username 'paste' %}"><i class="fa fa-times"></i></a>
+                <div class="media">
+                  <div class="media-left">
+                          <img class="media-object img-circle" src="{{ details.paste.profile_pic }}">
+
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase"><a href="https://pastebin.com/u/{{ details.username }}"><img border="0" class="social_icon" src="{% static 'images/pastebin.png' %}">
+                  </a></h2>
+                    <h2>{{ details.username }}</h2>
+                    <h2>Profile views: {{ details.paste.views }}</h2>
+                    <h2>Pastes views: {{ details.paste.paste_views }}</h2>
+                    <h2>{{ details.paste.joined }}</h2>
+
+
+
+                  </div>
+                </div>
+              </div>
+                                {% endif %}
+
+          </div>
+
+
+
+          <footer class="text-right">
+            <p>SocialPath by <a href="https://twitter.com/the_wojciech">Wojciech</a>
+            | Design: Template Mo</p>
+          </footer>         
+        </div>
+      </div>
+    </div>
+    
+    <!-- JS -->
+    <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>      <!-- jQuery -->
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script> <!--  jQuery Migrate Plugin -->
+
+    <script type="text/javascript" src="{% static 'js/templatemo-script.js' %}"></script>      <!-- Templatemo Script -->
+
+  </body>
+</html>
+{% endblock %}

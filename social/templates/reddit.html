@@ -1,0 +1,209 @@
+{% load static %}
+
+{% block page_content %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ details.name }} - SocialPath</title>
+    <meta name="description" content="">
+    <meta name="author" content="templatemo">
+      <script src="https://d3js.org/d3.v4.js"></script>
+<script src="{% static 'js/d3.v3.js' %}"></script>
+<script src="{% static 'js/d3.js' %}"></script>
+
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+<script src="{% static 'js/d3.layout.cloud.js' %}" charset="UTF-8"></script>
+<script src="{% static 'js/d3.wordcloud.js' %}" charset="UTF-8"></script>
+    <!--
+    Visual Admin Template
+    https://templatemo.com/tm-455-visual-admin
+    --><style>
+#calendar {
+  margin: 20px;
+}
+.month {
+  margin-right: 8px;
+}
+.month-name {
+  font-size: 85%;
+  fill: #777;
+  font-family: Arial, Helvetica;
+}
+.day.hover {
+  stroke: #6d6E70;
+  stroke-width: 2;
+}
+.day.focus {
+  stroke: #ffff33;
+  stroke-width: 2;
+}
+</style>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+     <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet">
+      <script src="{% static  'js/calendar.js' %}"></script>
+<script src="{% static  'js/lolipop_chart.js' %}"></script>
+<script src="{% static 'js/scroll.js' %}"></script>
+
+
+  </head>
+  <body>
+    <!-- Left column -->
+    <div class="templatemo-flex-row">
+      <div class="templatemo-sidebar">
+        <header class="templatemo-site-header">
+          <h1>SocialPath</h1>
+        </header>
+
+
+        <div class="mobile-menu-icon">
+            <i class="fa fa-bars"></i>
+          </div>
+        <nav class="templatemo-left-nav">
+          <ul>
+                        <li><a href="/social"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="/search"><i class="fa fa-users fa-fw"></i>Search</a></li>
+          </ul>
+        </nav>
+      </div>
+      <!-- Main content -->
+      <div class="templatemo-content col-1 light-gray-bg">
+        <div class="templatemo-top-nav-container">
+          <div class="row">
+            <nav class="templatemo-top-nav col-lg-12 col-md-12">
+              <ul class="text-uppercase">
+                <li><a href="/social" class="active">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="https://github.com/woj-ciech/socialpath">Github page</a></li>
+                <li><a href="https://twitter.com/the_wojciech">Follow me</a></li>
+                                <li><a href="https://medium.com/@woj_ciech">OSINT Blog</a></li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="templatemo-content-container">
+          <div class="templatemo-content-widget white-bg">
+            <h2 class="margin-bottom-10">{{ details.user }}</h2>
+            <div class='progress-wrapper'>
+                <div id='progress-bar'  class='progress-bar' style="background-color: #68a9ef; width: 0%; height: 5%;">&nbsp;</div>
+                </div>
+            <br>
+            <center><button type="button" id="cal" class="btn btn-danger active">Search</button></center>
+            <br>
+            <div class="panel panel-default no-border">
+              <div class="panel-heading border-radius-10">
+                <h2 style="text-align: center;">Timeline</h2>
+              </div>
+              <div class="panel-body">
+                <div class="templatemo-flex-row flex-content-row margin-bottom-30">
+                  <div class="col-1">
+                      <div id="calendar" class="templatemo-chart"></div><script>var tw = "reddit";drawCalendar("{{ details.user }}", "reddit");</script>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default no-border">
+              <div class="panel-heading border-radius-10">
+                <h2>Subreddits</h2>
+              </div>
+              <div class="panel-body">
+                <div class="templatemo-flex-row flex-content-row margin-bottom-30">
+                  <div class="col-1">
+                      <div id="hashtags" class="templatemo-chart"></div><script>lolipop("{{ details.user }}", "reddit");</script>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="panel panel-default no-border">
+              <div class="panel-heading border-radius-10">
+                <h2>Words</h2>
+              </div>
+              <div class="panel-body">
+                <div class="templatemo-flex-row flex-content-row margin-bottom-30">
+                  <div class="col-1">
+                      <div id="words" class="templatemo-chart"></div><script>scroll("{{ details.user }}", "reddit");</script>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer class="text-right">
+            <p>SocialPath by <a href="https://twitter.com/the_wojciech">Wojciech</a>
+            | Design: Template Mo</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- JS -->
+    <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>      <!-- jQuery -->
+    <script src="{% static 'js/jquery-migrate-1.2.1.min.js' %}"></script> <!--  jQuery Migrate Plugin -->
+    <script type="text/javascript" src="{% static 'js/templatemo-script.js' %}"></script>
+            <script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+<!-- Templatemo Script -->
+<script>
+  function get_task_info(task_id) {
+    pgrbar = document.getElementById("progress-bar");
+    var x = document.getElementById("cal");
+
+    $.ajax({
+            type: 'get',
+            url: '/get-task-info/',
+            data: {
+                'task_id': task_id
+            },
+            success: function(data) {
+                 if (data.state == 'PENDING') {
+                    console.log('pending');
+
+                } else if (data.state == 'PROGRESS') {
+                x.style.display="None";
+                pgrbar.style['width'] = data.result.percent + "%";
+                pgrbar.style['visibility'] = "visible";
+                console.log('progress');
+
+
+                } else if (data.state == 'SUCCESS') {
+                  pgrbar.style.display="None";
+                  x.style.display="None";
+                    var tw = "reddit";
+                    drawCalendar("{{ details.user }}", tw);
+                    scroll("{{ details.user }}", "reddit");
+
+                    lolipop("{{ details.user }}", "reddit");
+                    wordcloud1();
+              }
+              if (data.state != 'SUCCESS') {
+                        setTimeout(function() {
+                            get_task_info(task_id)
+                        }, 100);
+                                            }
+                },
+              })}
+</script>
+<script>
+  $('#cal').on('click', function(){
+var x = document.getElementById("cal");
+
+        $.ajax({
+            url: "timeline/reddit",
+            type: "get",
+            success: function(response) {
+            get_task_info(response.task_id);
+    },
+    error: function(xhr, status, error) {
+  alert(xhr.responseText);
+}
+
+})});
+</script>
+  </body>
+</html>
+{% endblock %}

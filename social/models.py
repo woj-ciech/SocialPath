@@ -1,0 +1,133 @@
+from django.db import models
+from jsonfield import JSONField
+
+class Insta(models.Model):
+    # usernames = models.ForeignKey(Usernames, on_delete=models.CASCADE)
+    bio = models.CharField(max_length=1000, blank=True)
+    timestamps = JSONField(blank=True)
+    bio_url = models.CharField(max_length=1000, blank=True, null=True)
+    followers = models.CharField(max_length=10, blank=True)
+    follow = models.CharField(max_length=10,blank=True)
+    screen_name = models.CharField(max_length=50)
+    profile_pic = models.CharField(max_length=1000, default="/static/images/socialpath.png")
+    locations = JSONField(blank=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Twitt(models.Model):
+    # usernames = models.ForeignKey(Usernames, on_delete=models.CASCADE)
+    user = models.CharField(max_length=1000, blank=True)
+
+    bio = models.CharField(max_length=500, blank=True)
+    created_at = models.CharField(max_length=25, blank=True)
+    profile_pic = models.CharField(max_length=25, default="/static/images/socialpath.png")
+    screen_name = models.CharField(max_length=500, blank=True)
+    followers = models.CharField(max_length=500, blank=True)
+    friends = models.CharField(max_length=500, blank=True)
+    hashtags = JSONField(blank=True)
+    symbols = JSONField(blank=True)
+    user_mentions = JSONField(blank=True)
+    url = JSONField(blank=True)
+    text = JSONField(blank=True)
+    timestamps = JSONField(blank=True)
+    geo = JSONField(blank=True)
+    favourites = models.CharField(max_length=10,blank=True)
+    similar = JSONField(blank=True)
+    exists = models.BooleanField(default=False)
+
+class Redd(models.Model):
+    karma = models.CharField(max_length=10, blank=True)
+    joined = models.CharField(max_length=25, blank=True)
+    profile_pic = models.CharField(max_length=1000, default="/static/images/socialpath.png")
+    subreddits = JSONField(blank=True)
+    timestamps = JSONField(blank=True)
+    ups = JSONField(blank=True)
+    text = JSONField(blank=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Face(models.Model):
+    # usernames = models.ForeignKey(Usernames, on_delete=models.CASCADE)
+    profile_pic = models.CharField(max_length=50, blank=True)
+    # timestamp = JSONField(blank=True)
+    # words = JSONField(blank=True)
+    # likes = JSONField(blank=True)
+    # comments = JSONField(blank=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Stackover(models.Model):
+    created_at = models.CharField(max_length=25, blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    profile_pic = models.CharField(max_length=1000,default="/static/images/socialpath.png")
+    reputation = models.CharField(max_length=50, blank=True)
+    last_access = models.CharField(max_length=25, blank=True)
+    url = models.CharField(max_length=200, blank=True)
+    score = JSONField(blank=True)
+    tags = JSONField(blank=True)
+    text = JSONField(blank=True)
+    timestamps = JSONField(blank=True)
+    similar = JSONField(blank=True,default={})
+    user_url = models.CharField(max_length=200, blank=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+    user_id =  models.CharField(max_length=1000, blank=True)
+
+class Pinterest(models.Model):
+    following = models.CharField(max_length=25, blank=True)
+    followers = models.CharField(max_length=25, blank=True)
+    locale = models.CharField(max_length=100, blank=True)
+    profile_pic = models.CharField(max_length=1000,default="/static/images/socialpath.png")
+    about = models.CharField(max_length=200, blank=True)
+    url = models.CharField(max_length=200, blank=True, null=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Github(models.Model):
+    profile_pic = models.CharField(max_length=1000,default="/static/images/socialpath.png")
+    blog = models.CharField(max_length=1000, blank=True, null=True)
+    location = models.CharField(max_length=1000, blank=True, null=True)
+    email = models.CharField(max_length=1000, blank=True, null=True)
+    bio = models.CharField(max_length=1000, blank=True, null=True)
+    twitter_username = models.CharField(max_length=1000, blank=True, null=True)
+    repos = models.CharField(max_length=1000, blank=True)
+    followers  = models.CharField(max_length=1000, blank=True)
+    following  = models.CharField(max_length=1000, blank=True)
+    created_at  = models.CharField(max_length=1000, blank=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Tumblr(models.Model):
+    profile_pic = models.CharField(max_length=1000, default="/static/images/socialpath.png")
+    title = models.CharField(max_length=1000, blank=True, null=True)
+    exists = models.BooleanField(default=False)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Steam(models.Model):
+    exists = models.BooleanField(default=False)
+    profile_pic = models.CharField(max_length=1000, default="/static/images/socialpath.png")
+    real_name = models.CharField(max_length=1000, blank=True, null=True)
+    location = models.CharField(max_length=1000, blank=True, null=True)
+    level = models.CharField(max_length=1000, blank=True, null=True)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Paste(models.Model):
+    profile_pic = models.CharField(max_length=1000, default="/static/images/socialpath.png")
+    exists = models.BooleanField(default=False)
+    views = models.CharField(max_length=1000, blank=True, null=True)
+    paste_views = models.CharField(max_length=1000, blank=True, null=True)
+    joined = models.CharField(max_length=1000, blank=True, null=True)
+    user = models.CharField(max_length=1000, blank=True)
+
+class Usernames(models.Model):
+    username = models.CharField(max_length=50)
+    twitt = models.ForeignKey(Twitt, on_delete=models.CASCADE, blank=True, null=True)
+    redd = models.ForeignKey(Redd, on_delete=models.CASCADE, blank=True, null=True)
+    stackover = models.ForeignKey(Stackover, on_delete=models.CASCADE, blank=True, null=True)
+    face = models.ForeignKey(Face, on_delete=models.CASCADE, blank=True, null=True)
+    insta = models.ForeignKey(Insta, on_delete=models.CASCADE, blank=True, null=True)
+    pinterest = models.ForeignKey(Pinterest, on_delete=models.CASCADE, blank=True, null=True)
+    github = models.ForeignKey(Github, on_delete=models.CASCADE, blank=True, null=True)
+    tumblr = models.ForeignKey(Tumblr, on_delete=models.CASCADE, blank=True, null=True)
+    steam = models.ForeignKey(Steam, on_delete=models.CASCADE, blank=True, null=True)
+    paste = models.ForeignKey(Paste, on_delete=models.CASCADE, blank=True, null=True)
