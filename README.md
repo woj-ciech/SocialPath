@@ -21,8 +21,6 @@ Supported services:
 - Pastebin
 - Github
 
-App uses Django and D3js to draw charts.
-
 Requirements:
 - Django
 - Tweepy
@@ -31,6 +29,7 @@ Requirements:
 - Redis
 
 # Install
+Paste your API keys into [backend/keys.json](https://github.com/woj-ciech/SocialPath/blob/master/backend/keys.json) Remember to escape double quotes (") in instagram cookie with \ in json
 ```
 pip3 install -r requirements.txt
 
@@ -49,8 +48,6 @@ In new window in main directory
 celery worker -A socialpath --loglevel=debug
 ```
 After that SocialPath will be accessible at localhost:8000/search
-
-Paste your API keys into [backend/keys.json](https://github.com/woj-ciech/SocialPath/blob/master/backend/keys.json) Remember to escape double quotes (") in instagram cookie with \ in json
 
 Directory is created for each user with csv inside under /static/, for visualizations.
 
