@@ -29,21 +29,29 @@ Requirements:
 - Redis
 
 # Install
-Paste your API keys into [backend/keys.json](https://github.com/woj-ciech/SocialPath/blob/master/backend/keys.json) Remember to escape double quotes (") in instagram cookie with \ in json
-```
-pip3 install -r requirements.txt
+- Paste your API keys into [backend/keys.json](https://github.com/woj-ciech/SocialPath/blob/master/backend/keys.json) Remember to escape double quotes (") in instagram cookie with \ in json
 
+- Install and run redis
+```
 apt-get install redis-server
 redis-server
 ```
-In new window in main directory
+- Clone repo
+```
+https://github.com/woj-ciech/SocialPath
+```
+- Install requirements
+```
+pip3 install -r requirements.txt
+```
+- Migrate database (run it in main directory)
 ```
 python3 manage.py makemigrations social
 python3 manage.py migrate social
 python3 manage.py migrate
 python3 manage.py runserver
 ```
-In new window in main directory
+- Fire up celery (run it in main directory)
 ```
 celery worker -A socialpath --loglevel=debug
 ```
