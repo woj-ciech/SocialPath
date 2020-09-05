@@ -37,7 +37,9 @@ redis-server
 ```
 In new window in main directory
 ```
-python3 manage.py migrate --run-syncdb
+python3 manage.py makemigrations social
+python3 manage.py migrate social
+python3 manage.py migrate
 python3 manage.py runserver
 ```
 In new window in main directory
