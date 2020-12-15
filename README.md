@@ -54,6 +54,9 @@ python3 manage.py runserver
 - Fire up celery (run it in main directory)
 ```
 celery worker -A socialpath --loglevel=debug
+
+For celery 5.x
+celery --app socialpath worker
 ```
 After that SocialPath will be accessible at localhost:8000/search
 
