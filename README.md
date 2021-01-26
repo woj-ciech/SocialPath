@@ -71,3 +71,5 @@ Directory is created for each user with csv inside under /static/, for visualiza
 ![](https://imgur.com/eu3d5xt.jpg)
 ![](https://i.imgur.com/yc9Mb9C.png)
 
+# License
+This project is licensed under the terms of the MIT license.
